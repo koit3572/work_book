@@ -25,14 +25,13 @@
 import { getAllSlugs, getMarkdownBySlug } from "@/lib/markdown";
 import ClientPage from "./ClientPage";
 
-// ✅ 타입 직접 정의하지 말고, 구조 분해로만 사용
 export default async function MarkdownPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string[] };
 }) {
-  const decodedSlug = params.slug.map(decodeURIComponent);
-  const { data, content } = await getMarkdownBySlug(decodedSlug);
+  const decoded = slug.map(decodeURIComponent);
+  const { data, content } = await getMarkdownBySlug(decoded);
 
   return (
     <div className="markdown-body mx-auto px-4 py-10">
@@ -42,7 +41,6 @@ export default async function MarkdownPage({
   );
 }
 
-// ✅ Promise<{ slug: string[] }[]> 정확히 명시
 export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   const allSlug = getAllSlugs();
 
