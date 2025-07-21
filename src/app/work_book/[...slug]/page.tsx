@@ -7,8 +7,8 @@ interface PageProps {
   };
 }
 
-export default async function MarkdownPage({ params }: PageProps) {
-  const { data, content } = await getMarkdownBySlug(params.slug);
+export default function MarkdownPage({ params }: PageProps) {
+  const { data, content } = getMarkdownBySlug(params.slug);
 
   return (
     <div className="markdown-body mx-auto px-4 py-10">
