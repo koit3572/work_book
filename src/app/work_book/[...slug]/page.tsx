@@ -42,8 +42,9 @@ export default async function MarkdownPage({ params }: PageProps) {
 }
 
 export const dynamicParams = false;
-export function generateStaticParams(): { slug: string[] }[] {
+export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   const allSlug = getAllSlugs();
+
   return allSlug.map((slugArr) => ({
     slug: slugArr.map((s) => encodeURIComponent(s)),
   }));
