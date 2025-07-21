@@ -40,7 +40,7 @@ export default async function MarkdownPage({
   );
 }
 
-export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
+export function generateStaticParams(): { slug: string[] }[] {
   const allSlug = getAllSlugs();
   const formatAllSlug = allSlug.map((data) => ({ slug: [...data] }));
   return formatAllSlug;
