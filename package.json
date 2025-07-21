@@ -13,6 +13,7 @@
     "github-markdown-css": "^5.8.1",
     "gray-matter": "^4.0.3",
     "lodash.debounce": "^4.0.8",
+    "marked": "^15.0.12",
     "next": "15.4.2",
     "next-mdx-remote": "^5.0.0",
     "react": "^18.2.0",
