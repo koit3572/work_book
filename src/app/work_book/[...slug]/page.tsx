@@ -38,7 +38,7 @@ export default async function MarkdownPage({
       <h1 className="markdown-title">{data.title}</h1>
       <ClientPage markdown={content} />
     </div>
-  );
+  ); 
 }
 
 export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
