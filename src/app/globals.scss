@@ -1,0 +1,27 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css');
+@import "tailwindcss";
+
+ 
+.inline-code {
+  @apply bg-yellow-100 text-pink-600 font-semibold px-1.5 rounded;
+}
+
+.markdown-body {
+  .markdown-title {
+    font-size: 4rem;  
+  }
+  li{
+    padding: 0.2rem;
+  }
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
