@@ -25,11 +25,13 @@
 import { getAllSlugs, getMarkdownBySlug } from "@/lib/markdown";
 import ClientPage from "./ClientPage";
 
-export default async function MarkdownPage({
-  params: { slug },
-}: {
-  params: { slug: string[] };
-}) {
+type Params = {
+  params: {
+    slug: string[];
+  };
+};
+
+export default async function MarkdownPage({ params: { slug } }: Params) {
   const decoded = slug.map(decodeURIComponent);
   const { data, content } = await getMarkdownBySlug(decoded);
 
@@ -38,11 +40,11 @@ export default async function MarkdownPage({
       <h1 className="markdown-title">{data.title}</h1>
       <ClientPage markdown={content} />
     </div>
-  ); 
+  );
 }
 
-export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
-  const allSlug = getAllSlugs();
+export async function generateStaticParams() {
+  const allSlug = await getAllSlugs();
 
   return allSlug.map((slugArr) => ({
     slug: slugArr.map((s) => encodeURIComponent(s)),
