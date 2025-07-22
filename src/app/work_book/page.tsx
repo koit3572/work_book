@@ -7,14 +7,14 @@ export default function PostIndexPage() {
   const slugs = getAllSlugs(); // [['hello'], ['a', 'test1']]
 
   return (
-    <main className="p-6 prose dark:prose-invert">
+    <main className="p-6">
       <h1>📂 마크다운 리스트</h1>
       <ul>
-        {slugs.map((slugArr,index) => {
+        {slugs.map((slugArr, index) => {
           const path = slugArr.join("/");
           return (
             <li key={path}>
-              {index+1}. <Link href={`/work_book/${path}`}>{path}</Link>
+              {index + 1}. <Link href={`/work_book/${path}`}>{path}</Link>
             </li>
           );
         })}

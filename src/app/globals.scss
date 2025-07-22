@@ -1,6 +1,5 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css');
+@import "github-markdown-css/github-markdown.css";
 @import "tailwindcss";
-
  
 .inline-code {
   @apply bg-yellow-100 text-pink-600 font-semibold px-1.5 rounded;

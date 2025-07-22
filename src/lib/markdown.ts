@@ -58,23 +58,3 @@ export function highlightInlineCode(html: string): string {
   });
 }
 
-export async function getHtmlFromMarkdown(slugParts: string[]) {
-  const filePath =
-    path.join(process.cwd(), "src", "work_book", ...slugParts) + ".md";
-  const fileContents = fs.readFileSync(decodeURIComponent(filePath), "utf-8");
-
-  const { data, content: markdownContent } = matter(fileContents);
-
-  const processed = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeStringify)
-    .process(markdownContent);
-
-  const rawHtml = processed.toString();
-  return {
-    data: data,
-    content: highlightInlineCode(rawHtml),
-  };
-}
-

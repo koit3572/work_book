@@ -8,7 +8,7 @@ export default async function MarkdownPage({ params }) {
   const { data, content } = await getMarkdownBySlug(decoded);
 
   return (
-    <div className="markdown-body mx-auto px-4 py-10">
+    <div className="prose dark:prose-invert markdown-body mx-auto px-4 py-10">
       <h1 className="markdown-title">{data.title}</h1>
       <ClientPage markdown={content} />
     </div>

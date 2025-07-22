@@ -8,18 +8,19 @@ import remarkGfm from "remark-gfm";
 export default function ClientPage({ markdown }: { markdown: string }) {
   const [resetSignal, setResetSignal] = useState(0);
 
-  // reset 눌렀을 때 신호 증가 → InlineInput 리셋
   const onReset = () => {
     setResetSignal((s) => s + 1);
   };
 
   return (
-    <div className="prose max-w-none relative">
+    <div>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           code({ children }) {
             const answer = String(children).trim();
+
+            // ✅ 인라인 코드만 커스텀 처리
             if (probabilityFn(50)) {
               return <InlineInput answer={answer} resetSignal={resetSignal} />;
             } else {
