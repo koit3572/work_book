@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 interface InlineInputProps {
   answer: string;
-  resetSignal?: number; // 외부 리셋 신호용(숫자 바뀔 때 리셋)
+  resetSignal?: number;
 }
 
 export default function InlineInput({ answer, resetSignal }: InlineInputProps) {
@@ -11,6 +12,7 @@ export default function InlineInput({ answer, resetSignal }: InlineInputProps) {
   const [status, setStatus] = useState<"default" | "correct" | "wrong">(
     "default"
   );
+  const [showAnswer, setShowAnswer] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const normalize = (str: string) => str.replace(/\s+/g, "").trim();
@@ -37,27 +39,44 @@ export default function InlineInput({ answer, resetSignal }: InlineInputProps) {
     };
   }, []);
 
-  // resetSignal이 바뀌면 리셋 처리
   useEffect(() => {
     setValue("");
     setStatus("default");
+    setShowAnswer(false);
   }, [resetSignal]);
 
   return (
-    <input
-      value={value}
-      onChange={onChange}
-      data-answer={answer}
-      className={`inline-code-input border px-1 rounded outline-none transition-colors
-        ${
-          status === "default"
-            ? "border-gray-300"
-            : status === "correct"
-            ? "border-green-500"
-            : "border-red-500"
-        }
-      `}
-      style={{ minWidth: 50 }}
-    />
+    <span
+      className="relative inline-block"
+      style={{ width: `${answer.length + 6}ch`, minWidth: "50px" }}
+    >
+      <input
+        value={value}
+        onChange={onChange}
+        data-answer={answer}
+        className={`inline-code-input border px-1 rounded outline-none w-full pr-5 transition-colors
+          ${
+            status === "default"
+              ? "border-gray-300"
+              : status === "correct"
+              ? "border-green-500"
+              : "border-red-500"
+          }`}
+      />
+
+      <button
+        type="button"
+        className="absolute right-1 top-1/2 -translate-y-1/2 text-xs underline opacity-25 hover:cursor-pointer"
+        onClick={() => setShowAnswer((prev) => !prev)}
+      >
+        {showAnswer ? <FaRegEyeSlash /> : <FaRegEye />}
+      </button>
+
+      {showAnswer && (
+        <div className="absolute top-full mt-1 left-0 text-sm text-gray-700 bg-gray-100 border rounded px-2 py-1 shadow z-2">
+          {answer}
+        </div>
+      )}
+    </span>
   );
 }
