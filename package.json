@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.11.6",
     "@tailwindcss/typography": "^0.5.16",
     "github-markdown-css": "^5.8.1",
     "gray-matter": "^4.0.3",
