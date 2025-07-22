@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^5.11.6",
     "@tailwindcss/typography": "^0.5.16",
     "github-markdown-css": "^5.8.1",
     "gray-matter": "^4.0.3",
@@ -33,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@netlify/plugin-nextjs": "^5.11.6",
     "@tailwindcss/postcss": "^4",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
