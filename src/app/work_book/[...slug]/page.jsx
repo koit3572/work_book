@@ -1,14 +1,10 @@
+// 파일명: src/app/work_book/[...slug]/page.js
+
 import { getAllSlugs, getMarkdownBySlug } from "@/lib/markdown";
 import ClientPage from "./ClientPage";
 
-type PageProps = {
-  params: {
-    slug: string[];
-  };
-};
-
-export default async function MarkdownPage({ params: { slug } }: PageProps) {
-  const decoded = slug.map(decodeURIComponent);
+export default async function MarkdownPage({ params }) {
+  const decoded = params.slug.map(decodeURIComponent);
   const { data, content } = await getMarkdownBySlug(decoded);
 
   return (
@@ -21,7 +17,6 @@ export default async function MarkdownPage({ params: { slug } }: PageProps) {
 
 export async function generateStaticParams() {
   const allSlug = await getAllSlugs();
-
   return allSlug.map((slugArr) => ({
     slug: slugArr.map((s) => encodeURIComponent(s)),
   }));
