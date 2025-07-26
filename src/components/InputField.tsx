@@ -48,7 +48,7 @@ export default function InlineInput({ answer, resetSignal }: InlineInputProps) {
   return (
     <span
       className="relative inline-block"
-      style={{ width: `${answer.length + 6}ch`, minWidth: "50px" }}
+      style={{ width: `${answer.length + 10}ch`, minWidth: "50px" }}
     >
       <input
         value={value}
